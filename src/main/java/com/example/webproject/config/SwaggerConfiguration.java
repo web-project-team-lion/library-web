@@ -1,2 +1,3 @@
-package com.example.webproject.config;public class SwaggerConfiguration {
+package com.example.webproject.config;
+public class SwaggerConfiguration {
 }

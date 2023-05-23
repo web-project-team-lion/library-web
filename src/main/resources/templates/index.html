@@ -2,25 +2,99 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>드래그 가능한 마커 생성하기</title>
+    <title>library-web-project</title>
+    <style>
+        .rectangle {
+            position: relative;
+            width: 1200px;
+            height: 80px;
+            left: 32px;
+            top: 33px;
+            background: rgba(217, 217, 217, 0.3);
+            border-radius: 15px;
+        }
+        .image {
+            position: absolute;
+            width: 254.1px;
+            height: 70px;
+            left: 50px;
+            top: 33px;
+        }
+        .directions {
+            position: absolute;
+            width: 563px;
+            height: 102px;
+            left: -107px;
+            top: 162px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            line-height: 36px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: #000000;
+        }
+        .line1 {
+            position: absolute;
+            width: 387px;
+            height: 0px;
+            left: 120px;
+            top: 350px;
 
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            transform: rotate(90deg);
+        }
+        .line2{
+            position: absolute;
+            width: 908px;
+            height: 0px;
+            left: 324px;
+            top: 542px;
+
+            border: 1px solid rgba(0, 0, 0, 0.4);
+        }
+        .adress{
+            position: absolute;
+            width: 221px;
+            height: 41px;
+            left: 350px;
+            top: 576px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 36px;
+            letter-spacing: 1px;
+
+            color: #000000;
+
+        }
+    </style>
 </head>
 <body>
-<div id="map" style="width:100%;height:350px;"></div>
-<p><em>마커를 드래그 해주세요!</em></p>
+<div class="rectangle"></div>
+<img class="image" src="images/kangnamlogo.png"/>
+<div id="map" style="width:836px;height:325px;top: 162px; left: 350px; position: absolute"></div>
+<div class="directions">찾아오시는 길</div>
+<div class="line1"></div>
+<div class="line2"></div>
+<div class="adress">주소 및 연락처</div>
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5bce7a06f22e1dd2798f8336818ca504"></script>
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(37.276480121887154, 127.13238488884245), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨
         };
 
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
     // 마커가 표시될 위치입니다
-    var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+    var markerPosition = new kakao.maps.LatLng(37.276480121887154, 127.13238488884245);
 
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({

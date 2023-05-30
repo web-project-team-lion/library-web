@@ -4,13 +4,14 @@ import com.example.webproject.data.dto.ChangeProductNameDto;
 import com.example.webproject.data.dto.ProductDto;
 import com.example.webproject.data.dto.ProductResponseDto;
 import com.example.webproject.service.ProductService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/board")
+@RequestMapping("/product")
 public class ProductController {
 
     private final ProductService productService;
@@ -53,3 +54,4 @@ public class ProductController {
     }
 
 }
+

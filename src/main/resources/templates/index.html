@@ -4,74 +4,37 @@
     <meta charset="utf-8">
     <title>library-web-project</title>
     <style>
-        /* 찾아오시는 길 */
-        .find-us {
-            position: absolute;
-            width: 214px;
-            height: 30px;
-            left: 464px;
-            top: 56px;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 25px;
-            line-height: 30px;
-            text-align: center;
-            letter-spacing: 1px;
-            color: rgba(0, 0, 0, 0.9);
-        }
-
-        /* 게시판 */
-        .board {
-            position: absolute;
-            width: 214px;
-            height: 30px;
-            left: 801px;
-            top: 56px;
-
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 25px;
-            line-height: 30px;
-            text-align: center;
-            letter-spacing: 1px;
-
-            color: rgba(0, 0, 0, 0.9);
-
-        }
-
-        .rectangle {
-            position: relative;
-            width: 1200px;
+        .nav {
             height: 80px;
-            left: 32px;
-            top: 33px;
+            position: fixed;
+            top: 27px;
+            left: 0;
+            right: 0;
+            margin: 0 44px;
             background: rgba(217, 217, 217, 0.3);
             border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
         }
-        .image {
-            position: absolute;
-            width: 254.1px;
-            height: 70px;
-            left: 50px;
-            top: 33px;
-        }
-        .directions {
-            position: absolute;
-            width: 563px;
-            height: 102px;
-            left: -107px;
-            top: 162px;
+        .menu {
             font-family: 'Inter';
             font-style: normal;
-            font-weight: 600;
-            font-size: 30px;
-            line-height: 36px;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
             text-align: center;
             letter-spacing: 1px;
-            color: #000000;
+            color: rgba(0, 0, 0, 0.9);
+            margin: 0 0 0 200px;
         }
+        .logo {
+            margin-left: 35px;
+            margin-bottom: 5px;
+            width: 254px;
+            height: 70px;
+        }
+
         .line1 {
             position: absolute;
             width: 387px;
@@ -108,34 +71,76 @@
             color: #000000;
 
         }
-        .detail{position: absolute;
-        width: 469px;
-        height: 155px;
-        left: 353px;
-        top: 627px;
+        .detail{
+            position: absolute;
+            width: 469px;
+            height: 155px;
+            left: 353px;
+            top: 627px;
 
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 25px;
-        line-height: 30px;
-        letter-spacing: 1px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 25px;
+            line-height: 30px;
+            letter-spacing: 1px;
 
-        color: #000000;}
+            color: #000000;
+        }
+        .how{
+            position: absolute;
+            width: 223px;
+            height: 41px;
+            left: 869px;
+            top: 576px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 36px;
+            letter-spacing: 1px;
+
+            color: #000000;
+        }
+        .category{
+            position: absolute;
+            width: 563px;
+            height: 102px;
+            left: -107px;
+            top: 162px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            line-height: 36px;
+            text-align: center;
+            letter-spacing: 1px;
+
+            color: #000000;
+        }
     </style>
 </head>
 <body>
-<h1 class="find-us">찾아오시는 길</h1>
-<h1 class="board">게시판</h1>
-
-<div class="rectangle"></div>
-<img class="image" src="images/kangnamlogo.png"/>
 <div id="map" style="width:836px;height:325px;top: 162px; left: 350px; position: absolute"></div>
-<div class="directions">찾아오시는 길</div>
+<div class="nav">
+    <img src="/images/logo.png" class="logo"/>
+    <div class="menu">찾아오는 길</div>
+    <div class="menu">게시판</div>
+</div>
 <div class="line1"></div>
 <div class="line2"></div>
 <div class="adress">주소 및 연락처</div>
-<div class="detail">주소 [도로명]경기도 용인시 기흥구 강남로 40 [지번]경기도 용인시 기흥구 구갈동 111 연락처 031-280-3585</div>
+<div class="detail">주소<br>
+    [도로명]경기도 용인시 기흥구 강남로 40<br>
+    [지번]경기도 용인시 기흥구 구갈동 111<br>
+
+    연락처
+    031-280-3585</div>
+<div class="how">찾아오시는 방법</div>
+<div class="category">찾아오시는 길</div>
+
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5bce7a06f22e1dd2798f8336818ca504"></script>

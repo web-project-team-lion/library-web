@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -132,14 +132,24 @@
             color: #3563E9;
         }
     </style>
+
+    <script>
+        function redirectToIndex() {
+            window.location.href = "/index";
+        }
+
+        function redirectToLogin() {
+            window.location.href = "/login";
+        }
+    </script>
 </head>
 <body>
 <div class="rectangle">
     <img class="logo" src="images/kangnamlogo.png"/>
-    <div class="find-us">찾아오는 길</div>
+    <div class="find-us" onclick="redirectToIndex()">찾아오는 길</div>
     <div class="board">게시판</div>
 </div>
-<button class="button-contained">
+<button class="button-contained" onclick="redirectToLogin()">
     <span class="button-contained-text">로그인</span>
 </button>
 <button class="button-outline">
@@ -147,5 +157,6 @@
 </button>
 <div class="rectangle"></div>
 <img class="background" src="images/background.png"/>
+
 </body>
 </html>

@@ -4,6 +4,43 @@
     <meta charset="utf-8">
     <title>library-web-project</title>
     <style>
+        /* 찾아오시는 길 */
+        .find-us {
+            position: absolute;
+            width: 214px;
+            height: 30px;
+            left: 464px;
+            top: 56px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* 게시판 */
+        .board {
+            position: absolute;
+            width: 214px;
+            height: 30px;
+            left: 801px;
+            top: 56px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+
+            color: rgba(0, 0, 0, 0.9);
+
+        }
+
         .rectangle {
             position: relative;
             width: 1200px;
@@ -71,9 +108,26 @@
             color: #000000;
 
         }
+        .detail{position: absolute;
+        width: 469px;
+        height: 155px;
+        left: 353px;
+        top: 627px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 25px;
+        line-height: 30px;
+        letter-spacing: 1px;
+
+        color: #000000;}
     </style>
 </head>
 <body>
+<h1 class="find-us">찾아오시는 길</h1>
+<h1 class="board">게시판</h1>
+
 <div class="rectangle"></div>
 <img class="image" src="images/kangnamlogo.png"/>
 <div id="map" style="width:836px;height:325px;top: 162px; left: 350px; position: absolute"></div>
@@ -81,6 +135,7 @@
 <div class="line1"></div>
 <div class="line2"></div>
 <div class="adress">주소 및 연락처</div>
+<div class="detail">주소 [도로명]경기도 용인시 기흥구 강남로 40 [지번]경기도 용인시 기흥구 구갈동 111 연락처 031-280-3585</div>
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5bce7a06f22e1dd2798f8336818ca504"></script>

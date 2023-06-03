@@ -7,22 +7,19 @@ import com.google.gson.JsonObject;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class NaverService {
+public class GoogleService {
 
-    public String getNaverAccessToken (String code) {
+    public String getGoogleAccessToken (String code) {
         String access_Token = "";
         String refresh_Token = "";
-        String reqURL = "https://nid.naver.com/oauth2.0/token";
-
-
+        //String reqURL = "https://oauth2.googleapis.com/token";
+        String reqURL = "https://oauth2.googleapis.com/token";
         try {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -31,18 +28,14 @@ public class NaverService {
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
 
-            // 클라이언트 시크릿 값을 추가합니다.
-            String clientSecret = "p3flMVQsmY"; // 클라이언트 시크릿 값으로 대체해야 합니다.
-            conn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-
             //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
-            sb.append("grant_type=authorization_code");
-            sb.append("&client_id=JmLZgBmlk2HoNHiJ1qDw"); // TODO REST_API_KEY 입력
-            sb.append("&client_secret=p3flMVQsmY");
-            sb.append("&redirect_uri=http://localhost:8080/oauth/naver"); // TODO 인가코드 받은 redirect_uri 입력
             sb.append("&code=" + code);
+            sb.append("&grant_type=authorization_code");
+            sb.append("&client_id=569884170100-qithpn912dc88qiip3n5aaaa6t6mdbir.apps.googleusercontent.com"); // TODO REST_API_KEY 입력
+            sb.append("&client_secret=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");
+            sb.append("&redirect_uri=http://localhost:8080/oauth/google"); // TODO 인가코드 받은 redirect_uri 입력
             bw.write(sb.toString());
             bw.flush();
 
@@ -64,15 +57,8 @@ public class NaverService {
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
 
-            JsonElement accessTokenElement = element.getAsJsonObject().get("access_token");
-            if (accessTokenElement != null && !accessTokenElement.isJsonNull()) {
-                access_Token = accessTokenElement.getAsString();
-            }
-
-            JsonElement accessRefreshTokenElement = element.getAsJsonObject().get("refresh_token");
-            if (accessRefreshTokenElement != null && !accessRefreshTokenElement.isJsonNull()) {
-                refresh_Token = accessRefreshTokenElement.getAsString();
-            }
+            access_Token = element.getAsJsonObject().get("access_token").getAsString();
+            refresh_Token = element.getAsJsonObject().get("id_token").getAsString();
 
             System.out.println("access_token : " + access_Token);
             System.out.println("refresh_token : " + refresh_Token);
@@ -86,8 +72,8 @@ public class NaverService {
         return access_Token;
     }
 
-    public Map<String, Object> getNaverUserInfo(String access_token) throws IOException {
-        String host = "https://openapi.naver.com/v1/nid/me";
+    public Map<String, Object> getGoogleUserInfo(String access_token) throws IOException {
+        String host = "https://www.googleapis.com/oauth2/v1/userinfo";
         Map<String, Object> result = new HashMap<>();
         try {
             URL url = new URL(host);
@@ -117,11 +103,11 @@ public class NaverService {
             JsonObject properties = obj.has("properties") ? (JsonObject) obj.get("properties") : null;
 
 
-            String id = response.has("id") ? response.get("id").getAsString() : "";
-            String nickname = response.has("nickname") ? response.get("nickname").getAsString() : "";
-            String profileImage = response.has("profile_image") ? response.get("profile_image").getAsString() : "";
-            String email = response.has("email") ? response.get("email").getAsString() : "";
-            String name = response.has("name") ? response.get("name").getAsString() : "";
+            String id = obj.has("id") ? obj.get("id").getAsString() : "";
+            String nickname = obj.has("given_name") ? obj.get("given_name").getAsString() : "";
+            String profileImage = obj.has("picture") ? obj.get("picture").getAsString() : "";
+            String email = obj.has("email") ? obj.get("email").getAsString() : "";
+            String name = obj.has("name") ? obj.get("name").getAsString() : "";
 
             result.put("id", id);
             result.put("nickname", nickname);

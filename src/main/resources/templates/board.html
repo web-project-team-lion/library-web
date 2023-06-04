@@ -66,12 +66,7 @@
     .board-table td{
       padding: 5px 80px 5px 80px;
       font-size: 30px;
-    }
-    .board-table tr{
       border-bottom: 1px solid #444444;
-    }
-    .board-table tr:last-child{
-      border-bottom: none;
     }
     table.board-number{
       margin: auto;
@@ -96,28 +91,13 @@
     .board-number td:nth-child(3){
       border-right: 1px solid black;
     }
-    input{
-      margin-right: 50px;
-      height: 39px;
-      width: 108px;
-      font-size: 25px;
-      text-align: center;
-      letter-spacing: 1px;
-      color: #FFFFFF;
-      background: rgba(26, 119, 229, 0.8);
-      border-radius: 10px;
-      border: 1px solid rgba(26, 119, 229, 0.8);
-    }
-    input:hover{
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 <div class="rectangle">
   <a href="/home"><img class="logo" src="images/kangnamlogo.png"/></a>
   <a class="find-us" href="/index">찾아오는 길</a>
-  <a class="board" href="/board">게시판</a>
+  <a class="board" href="/product">게시판</a>
 </div>
 <div class="main">
   <h1>자유게시판</h1>
@@ -130,15 +110,11 @@
     <tr><td>5</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
     <tr><td>6</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
     <tr><td>7</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
-    <tr><td></td><td>
-      <table class="board-number">
-        <tr><td><</td><td>1</td><td>2</td><td>></td></tr>
-      </table></td>
-      <td></td>
-      <td><input type="button" value="글쓰기"/></td>
-    </tr>
   </table>
 
+  <table class="board-number">
+    <tr><td><</td><td>1</td><td>2</td><td>></td></tr>
+  </table>
 </div>
 </body>
 </html>

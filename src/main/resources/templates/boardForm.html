@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body{
+      margin-top: 35px;
+    }
+    a{
+      padding: 0;
+      margin: 0;
+      text-decoration: none;
+    }
+    .rectangle {
+      height: 80px;
+      margin: 20px 44px;
+      background: rgba(217, 217, 217, 0.3);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+    }
+    .logo {
+      /*position: absolute;*/
+      width: 254.1px;
+      height: 70px;
+      /*z-index: 3;*/
+    }
+    .find-us {
+      /*position: fixed ;*/
+
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: rgba(0, 0, 0, 0.9);
+      /*z-index: 3;*/
+      margin-left: 200px;
+    }
+    .board {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 0px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: rgba(0, 0, 0, 0.9);
+      margin-left: 300px;
+      z-index: 3;
+    }
+    .form-title{
+      width: 1000px;
+      height: 50px;
+      background: #D9D9D9;
+      text-align: center;
+      font-size: 27px;
+      line-height: 48px;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: #000000;
+    }
+    input[type="text"]{
+      font-weight: 400;
+      font-size: 27px;
+      line-height: 24px;
+      width: 993px;
+    }
+    textarea{
+      font-weight: 400;
+      font-size: 27px;
+      line-height: 24px;
+      width: 993px;
+      height: 427px;
+      resize: none;
+    }
+    form{
+      margin-left: 100px;
+    }
+    input[type="button"]{
+      margin-left: 980px;
+      height: 39px;
+      width: 108px;
+      font-size: 25px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: #FFFFFF;
+      background: rgba(26, 119, 229, 0.8);
+      border-radius: 10px;
+      border: 1px solid rgba(26, 119, 229, 0.8);
+    }
+    input:hover{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="rectangle">
+  <a href="/home"><img class="logo" src="images/kangnamlogo.png"/></a>
+  <a class="find-us" href="/index">찾아오는 길</a>
+  <a class="board" href="/board">게시판</a>
+</div>
+
+<form>
+  <table>
+    <tr><td><div class="form-title">게시판 글쓰기 양식</div></td></tr>
+    <tr><td><input type="text" placeholder="제목" height="50px"/></td></tr>
+    <tr><td><textarea placeholder="내용"></textarea></td></tr>
+    <tr><td><input type="button" value="완료"/> </td></tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,6 +1,10 @@
 package com.example.webproject.data.dto;
 
 import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor

@@ -19,12 +19,14 @@ public class ProductDAOImpl implements ProductDAO {
         this.productRepository = productRepository;
     }
 
+
     @Override
     public Product insertProduct(Product product) {
         Product savedProduct = productRepository.save(product);
 
         return savedProduct;
     }
+
 
     @Override
     public Product selectProduct(Long number) {
@@ -33,7 +35,7 @@ public class ProductDAOImpl implements ProductDAO {
         return selectedProduct;
     }
 
-    // 예제 6.15
+
     @Override
     public Product updateProductName(Long number, String name) throws Exception {
         Optional<Product> selectedProduct = productRepository.findById(number);
@@ -53,7 +55,6 @@ public class ProductDAOImpl implements ProductDAO {
         return updatedProduct;
     }
 
-    // 예제 6.17
     @Override
     public void deleteProduct(Long number) throws Exception {
         Optional<Product> selectedProduct = productRepository.findById(number);

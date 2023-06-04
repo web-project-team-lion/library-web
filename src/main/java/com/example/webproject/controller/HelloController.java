@@ -19,11 +19,5 @@ public class HelloController {
     public String login() {return "login";}
 
     @RequestMapping("/board")
-    public String board() {return "board";}
-
-    @RequestMapping("/boardForm")
-    public String boardForm() {return "boardForm";}
-
-    @RequestMapping("/boardDetail")
-    public String boardDetail() {return "boardDetail";}
+    public String product() {return "board";}
 }

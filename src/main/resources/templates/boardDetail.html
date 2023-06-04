@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title th:text="'게시판 - ' + ${post.title}"></title>
   <style>
     body{
       margin-top: 35px;
@@ -64,10 +64,12 @@
     table.content{
       width: 1000px;
     }
+    table.content tr:first-child{
+      border: 1px solid black;
+    }
     table.content td, table.content th{
       font-size: 20px;
-      padding: 5px;
-      padding-top: 10px;
+      padding: 10px;
     }
     table.content th{
       font-weight: 700;
@@ -83,6 +85,7 @@
       padding: 0;
       width: 100px;
       border-right: 1px solid black;
+      border-left: 1px solid black;
     }
     div.board-content{
       width: 984.46px;
@@ -112,7 +115,7 @@
       height: 55px;
       font-size: 20px;
     }
-    table.comment input[type="button"]{
+    input[type="button"], button{
       height: 39px;
       width: 108px;
       font-size: 25px;
@@ -123,7 +126,7 @@
       border-radius: 10px;
       border: 1px solid rgba(26, 119, 229, 0.8);
     }
-    input[type="button"]:hover{
+    input[type="button"]:hover, button:hover{
       cursor: pointer;
     }
 
@@ -131,31 +134,51 @@
       width: 850px;
       /*border: none;*/
     }
+    h2{
+      text-align: center;
+    }
+    form{
+      width: 100px;
+    }
   </style>
 </head>
 <body>
 <div class="rectangle">
-  <a href="/home"><img class="logo" src="images/kangnamlogo.png"/></a>
+  <a href="/home"><img class="logo" src="images/logo.png"/></a>
   <a class="find-us" href="/index">찾아오는 길</a>
   <a class="board" href="/board">게시판</a>
 </div>
 
 <table class="content">
-  <tr><th colspan="2">게시판</th></tr>
-  <tr><td class="content-right">제목</td><td>제목어쩌고</td></tr>
-  <tr><td colspan="2">
-    <div class="board-content">게시판 내용</div>
+  <h2>게시판</h2>
+  <tr>
+    <td class="content-right" >제목</td>
+    <td th:text="${post.title}"></td>
+    <td class="content-right">작성자</td>
+    <td th:text="${post.author}"></td>
+    <td class="content-right">작성일</td>
+    <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+  </tr>
+  <tr><td colspan="6">
+    <div class="board-content" th:text="${post.content}">게시판 내용</div>
+  </td></tr>
+  <tr><td></td><td></td><td></td><td></td>
+    <td><a th:href="@{'/post/edit/' + ${post.id}}"><input type="button" value="수정"/></a></td>
+    <td class="td-padding"><form th:action="@{'/post/' + ${post.id}}" method="post">
+      <input type="hidden" name="_method" value="delete" />
+      <button type="submit">삭제</button>
+    </form>
   </td></tr>
 </table>
 
-<form>
-  <table class="comment">
-    <tr><td colspan="2">댓글</td></tr>
-    <tr><td><input type="text" size="30"/></td><td><input type="button" value="등록"/></td></tr>
-    <tr><td><div class="double-comment">댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고</div></td>
-      <td><input type="button" value="대댓글"></td></tr>
-    <tr><td colspan="2">->대댓글 어쩌고</td></tr>
-  </table>
-</form>
+<!--<form>-->
+<!--  <table class="comment">-->
+<!--    <tr><td colspan="2">댓글</td></tr>-->
+<!--    <tr><td><input type="text" size="30"/></td><td><input type="button" value="등록"/></td></tr>-->
+<!--    <tr><td><div class="double-comment">댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고댓글어쩌고</div></td>-->
+<!--      <td><input type="button" value="대댓글"></td></tr>-->
+<!--    <tr><td colspan="2">->대댓글 어쩌고</td></tr>-->
+<!--  </table>-->
+<!--</form>-->
 </body>
 </html>

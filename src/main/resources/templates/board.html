@@ -63,10 +63,18 @@
             border-top: 1px solid #444444;
             border-collapse: collapse;
         }
-        .board-table td{
+        .board-table td, .board-table th{
             padding: 5px 80px 5px 80px;
             font-size: 30px;
+        }
+        .board-table tr{
             border-bottom: 1px solid #444444;
+        }
+        .board-table tr:last-child{
+            border-bottom: none;
+        }
+        thead th{
+            background: #f2f2f2;
         }
         table.board-number{
             margin: auto;
@@ -110,27 +118,50 @@
 </head>
 <body>
 <div class="rectangle">
-    <a href="/home"><img class="logo" src="images/kangnamlogo.png"/></a>
+    <a href="/home"><img class="logo" src="images/logo.png"/></a>
     <a class="find-us" href="/index">찾아오는 길</a>
     <a class="board" href="/board">게시판</a>
 </div>
 <div class="main">
     <h1>자유게시판</h1>
     <table class="board-table">
-        <tr><td>No</td><td>제목</td><td>글쓴이</td><td>작성시간</td></tr>
-        <tr><td>1</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
-        <tr><td>2</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
-        <tr><td>3</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
-        <tr><td>4</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
-        <tr><td>5</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
-        <tr><td>6</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
-        <tr><td>7</td><td>ㅇㅇㅇㅇㅇㅇ</td><td>가나다</td><td>2023-05-22</td></tr>
+        <thead class="thead-light">
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">제목</th>
+            <th scope="col">글쓴이</th>
+            <th scope="col">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" th:each="post : ${postList}">
+            <th scope="row">
+                <span th:text="${post.id}"></span>
+            </th>
+            <td>
+                <a th:href="@{'/post/' + ${post.id}}">
+                    <span th:text="${post.title}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${post.author}"></span>
+            </td>
+            <td>
+                <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr><td></td><td>
+            <table class="board-number">
+                <tr><td><</td><td>1</td><td>2</td><td>></td></tr>
+            </table></td>
+            <td></td>
+            <td><a th:href="@{/post}"><input type="button" value="글쓰기"/></a></td>
+        </tr>
+        </tfoot>
     </table>
 
-    <table class="board-number">
-        <tr><td><</td><td>1</td><td>2</td><td>></td></tr>
-    </table>
-    <input type="button" value="글쓰기"/>
 </div>
 </body>
 </html>

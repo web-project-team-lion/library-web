@@ -16,45 +16,45 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/board")
     public String list(Model model) {
         List<BoardDto> boardDtoList = boardService.getBoardList();
         model.addAttribute("postList", boardDtoList);
-        return "list";
+        return "board";
     }
 
     @GetMapping("/post")
     public String post() {
-        return "post";
+        return "boardForm";
     }
 
     @PostMapping("/post")
     public String write(BoardDto boardDto) {
         boardService.savePost(boardDto);
-        return "redirect:/";
+        return "redirect:/board";
     }
     @GetMapping("/post/{id}")
     public String detail(@PathVariable("id") Long id, Model model) {
         BoardDto boardDto = boardService.getPost(id);
         model.addAttribute("post", boardDto);
-        return "detail.html";
+        return "boardDetail";
     }
 
     @GetMapping("/post/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) {
         BoardDto boardDto = boardService.getPost(id);
         model.addAttribute("post", boardDto);
-        return "edit.html";
+        return "boardEdit";
     }
 
     @PutMapping("/post/edit/{id}")
     public String update(BoardDto boardDto) {
         boardService.savePost(boardDto);
-        return "redirect:/";
+        return "redirect:/board";
     }
     @DeleteMapping("/post/{id}")
     public String delete(@PathVariable("id") Long id) {
         boardService.deletePost(id);
-        return "redirect:/";
+        return "redirect:/board";
     }
 }

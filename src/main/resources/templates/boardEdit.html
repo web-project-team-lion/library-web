@@ -105,13 +105,15 @@
   <a class="board" href="/board">게시판</a>
 </div>
 
-<form action="/post" method="post">
+<form th:action="@{'/post/edit/' + ${post.id}}" method="post">
+  <input type="hidden" name="_method" value="put" />
+  <input type="hidden" name="id" th:value="${post.id}" />
   <table>
     <tr><td><div class="form-title">게시판 글쓰기 양식</div></td></tr>
-    <tr><td><input type="text" name="title" placeholder="제목" height="50px"/></td></tr>
-    <tr><td><input type="text" name="author" placeholder="작성자" height="50px"/></td></tr>
-    <tr><td><textarea name="content" placeholder="내용"></textarea></td></tr>
-    <tr><td><input type="submit" value="완료"/> </td></tr>
+    <tr><td><input type="text" name="title" placeholder="제목" height="50px" th:value="${post.title}"/></td></tr>
+    <tr><td><input type="text" name="author" placeholder="제목" height="50px" th:value="${post.author}"/></td></tr>
+    <tr><td><textarea placeholder="내용" name="content" th:text="${post.content}"></textarea></td></tr>
+    <tr><td><input type="submit" value="수정"/> </td></tr>
   </table>
 </form>
 </body>

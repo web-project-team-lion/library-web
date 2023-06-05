@@ -100,18 +100,18 @@
 </head>
 <body>
 <div class="rectangle">
-  <a href="/home"><img class="logo" src="images/logo.png"/></a>
+  <a href="/home"><img class="logo" src="../images/logo.png"/></a>
   <a class="find-us" href="/index">찾아오는 길</a>
   <a class="board" href="/board">게시판</a>
 </div>
 
-<form th:action="@{'/post/edit/' + ${post.id}}" method="post">
+<form th:action="@{'/edit/' + ${post.id}}" method="post">
   <input type="hidden" name="_method" value="put" />
   <input type="hidden" name="id" th:value="${post.id}" />
   <table>
     <tr><td><div class="form-title">게시판 글쓰기 양식</div></td></tr>
     <tr><td><input type="text" name="title" placeholder="제목" height="50px" th:value="${post.title}"/></td></tr>
-    <tr><td><input type="text" name="author" placeholder="제목" height="50px" th:value="${post.author}"/></td></tr>
+    <tr><td><input type="text" name="author" placeholder="제목" height="50px" th:value="${nickname}" readonly/></td></tr>
     <tr><td><textarea placeholder="내용" name="content" th:text="${post.content}"></textarea></td></tr>
     <tr><td><input type="submit" value="수정"/> </td></tr>
   </table>

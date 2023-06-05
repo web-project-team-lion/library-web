@@ -43,14 +43,16 @@ public class BoardController {
         return "boardDetail";
     }
 
-    @GetMapping("/post/edit/{id}")
-    public String edit(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Long id, Model model, HttpSession session) {
         BoardDto boardDto = boardService.getPost(id);
         model.addAttribute("post", boardDto);
+        String nickname = (String) session.getAttribute("nickname");
+        model.addAttribute("nickname", nickname);
         return "boardEdit";
     }
 
-    @PutMapping("/post/edit/{id}")
+    @PutMapping("/edit/{id}")
     public String update(BoardDto boardDto) {
         boardService.savePost(boardDto);
         return "redirect:/board";

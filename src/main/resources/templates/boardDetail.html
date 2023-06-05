@@ -163,7 +163,7 @@
     <div class="board-content" th:text="${post.content}">게시판 내용</div>
   </td></tr>
   <tr><td></td><td></td><td></td><td></td>
-    <td><a th:href="@{'/post/edit/' + ${post.id}}"><input type="button" value="수정"/></a></td>
+    <td><a th:href="@{'/edit/' + ${post.id}}"><input type="button" value="수정"/></a></td>
     <td class="td-padding"><form th:action="@{'/post/' + ${post.id}}" method="post">
       <input type="hidden" name="_method" value="delete" />
       <button type="submit">삭제</button>

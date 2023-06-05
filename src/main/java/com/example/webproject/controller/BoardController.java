@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,9 @@ public class BoardController {
     }
 
     @GetMapping("/post")
-    public String post() {
+    public String post(HttpSession session, Model model) {
+        String nickname = (String) session.getAttribute("nickname");
+        model.addAttribute("nickname", nickname);
         return "boardForm";
     }
 

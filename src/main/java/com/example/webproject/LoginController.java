@@ -24,6 +24,7 @@ public class LoginController {
     @Autowired
     GoogleService gs;
 
+
     @GetMapping("/login")
     public String loginPage()
     {
@@ -36,11 +37,19 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        if (session != null) {
+        String access_token = (String)session.getAttribute("access_token");
+
+        if(access_token != null){
+            ks.logout(access_token);
+            //ns.logout(access_token);
             session.invalidate();
+        }else{
+            System.out.println("access_Token is null");
         }
+        System.out.println("로그아웃 성공!");
         return "redirect:/home";
     }
+
     @GetMapping("/kakao")
     public String getKakao(@RequestParam String code, Model model, HttpSession session) throws IOException {
         System.out.println("code = " + code);
@@ -52,7 +61,9 @@ public class LoginController {
         String nickname = (String) userInfo.get("nickname");
         System.out.println(nickname);
         session.setAttribute("nickname", nickname);
+        session.setAttribute("access_token", access_token);
         //ci는 비즈니스 전환후 검수신청 -> 허락받아야 수집 가능
+        System.out.println("카카오 로그인 성공!");
         return "redirect:/home";
     }
 
@@ -67,6 +78,7 @@ public class LoginController {
         String nickname = (String) userInfo.get("nickname");
         System.out.println(nickname);
         session.setAttribute("nickname", nickname);
+        session.setAttribute("access_token", access_token);
         //ci는 비즈니스 전환후 검수신청 -> 허락받아야 수집 가능
         return "redirect:/home";
     }
@@ -82,6 +94,7 @@ public class LoginController {
         String nickname = (String) userInfo.get("nickname");
         System.out.println(nickname);
         session.setAttribute("nickname", nickname);
+        session.setAttribute("access_token", access_token);
         //ci는 비즈니스 전환후 검수신청 -> 허락받아야 수집 가능
         return "redirect:/home";
     }

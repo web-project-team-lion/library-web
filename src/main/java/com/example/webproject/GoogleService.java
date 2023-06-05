@@ -13,13 +13,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class KaKaoService {
+public class GoogleService {
 
-    public String getKakaoAccessToken (String code) {
+    public String getGoogleAccessToken (String code) {
         String access_Token = "";
         String refresh_Token = "";
-        String reqURL = "https://kauth.kakao.com/oauth/token";
-
+        //String reqURL = "https://oauth2.googleapis.com/token";
+        String reqURL = "https://oauth2.googleapis.com/token";
         try {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -31,10 +31,11 @@ public class KaKaoService {
             //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
-            sb.append("grant_type=authorization_code");
-            sb.append("&client_id=ff923206dd7d39d8e33c5097f6d079a6"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost:8080/oauth/kakao"); // TODO 인가코드 받은 redirect_uri 입력
             sb.append("&code=" + code);
+            sb.append("&grant_type=authorization_code");
+            sb.append("&client_id=569884170100-qithpn912dc88qiip3n5aaaa6t6mdbir.apps.googleusercontent.com"); // TODO REST_API_KEY 입력
+            sb.append("&client_secret=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");
+            sb.append("&redirect_uri=http://localhost:8080/oauth/google"); // TODO 인가코드 받은 redirect_uri 입력
             bw.write(sb.toString());
             bw.flush();
 
@@ -57,7 +58,7 @@ public class KaKaoService {
             JsonElement element = parser.parse(result);
 
             access_Token = element.getAsJsonObject().get("access_token").getAsString();
-            refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+            refresh_Token = element.getAsJsonObject().get("id_token").getAsString();
 
             System.out.println("access_token : " + access_Token);
             System.out.println("refresh_token : " + refresh_Token);
@@ -71,8 +72,8 @@ public class KaKaoService {
         return access_Token;
     }
 
-    public Map<String, Object> getUserInfo(String access_token) throws IOException {
-        String host = "https://kapi.kakao.com/v2/user/me";
+    public Map<String, Object> getGoogleUserInfo(String access_token) throws IOException {
+        String host = "https://www.googleapis.com/oauth2/v1/userinfo";
         Map<String, Object> result = new HashMap<>();
         try {
             URL url = new URL(host);
@@ -98,16 +99,21 @@ public class KaKaoService {
 
             JsonParser parser = new JsonParser();
             JsonObject obj = parser.parse(res).getAsJsonObject();
-            JsonObject kakao_account = (JsonObject) obj.get("kakao_account");
-            JsonObject properties = (JsonObject) obj.get("properties");
+            JsonObject response = obj.getAsJsonObject("response");
+            JsonObject properties = obj.has("properties") ? (JsonObject) obj.get("properties") : null;
 
 
             String id = obj.has("id") ? obj.get("id").getAsString() : "";
-            String nickname = properties.has("nickname") ? properties.get("nickname").getAsString() : "";
-            String age_range = kakao_account.has("age_range") ? kakao_account.get("age_range").getAsString() : "";
+            String nickname = obj.has("given_name") ? obj.get("given_name").getAsString() : "";
+            String profileImage = obj.has("picture") ? obj.get("picture").getAsString() : "";
+            String email = obj.has("email") ? obj.get("email").getAsString() : "";
+            String name = obj.has("name") ? obj.get("name").getAsString() : "";
 
             result.put("id", id);
             result.put("nickname", nickname);
+            result.put("profileImage", profileImage);
+            result.put("email", email);
+            result.put("name", name);
 
             br.close();
 
@@ -117,30 +123,5 @@ public class KaKaoService {
         }
 
         return result;
-    }
-
-    public void logout(String access_Token) {
-        String reqURL = "https://kapi.kakao.com/v1/user/logout";
-        try {
-            URL url = new URL(reqURL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Authorization", "Bearer " + access_Token);
-
-            int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-            String result = "";
-            String line = "";
-
-            while ((line = br.readLine()) != null) {
-                result += line;
-            }
-            System.out.println(result);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

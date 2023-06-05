@@ -16,6 +16,14 @@
             align-items: center;
             justify-content: left;
         }
+        .menus {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
         .menu {
             font-family: 'Inter';
             font-style: normal;
@@ -25,7 +33,7 @@
             text-align: center;
             letter-spacing: 1px;
             color: rgba(0, 0, 0, 0.9);
-            margin: 0 0 0 200px;
+            margin: 0 auto;
         }
         .logo {
             margin-left: 35px;
@@ -149,13 +157,19 @@
             margin: 0 15px;
             padding-top: 21px;
         }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
 <div class="nav">
     <img src="/images/logo.png" class="logo"/>
-    <div class="menu">찾아오는 길</div>
-    <div class="menu">게시판</div>
+    <div class="menus">
+        <div class="menu"><a href="/">찾아오는 길</a></div>
+        <div class="menu"><a href="/board">게시판</a></div>
+    </div>
 </div>
 <div>
 <div class="title"><div class="content"><span>강남대학교 도서관 </span>방문을 환영합니다.</div></div>
@@ -172,7 +186,9 @@
             또는
         </div>
         <div class="loginLogos">
+            <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=569884170100-qithpn912dc88qiip3n5aaaa6t6mdbir.apps.googleusercontent.com&redirect_uri=http://localhost:8080/oauth/google&response_type=code&scope=email%20profile%20openid&access_type=offline">
             <img src="/images/google.png" class="loginLogo" width="85px" height="85px" />
+            </a>
             <a href="https://nid.naver.com/oauth2.0/authorize?client_id=JmLZgBmlk2HoNHiJ1qDw&redirect_uri=http://localhost:8080/oauth/naver&response_type=code">
             <img src="/images/naver.png" class="loginLogo" width="70px" height="70px" />
             </a>

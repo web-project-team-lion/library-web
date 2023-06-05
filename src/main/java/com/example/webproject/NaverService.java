@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 public class NaverService {
 
-    public String getNaverAccessToken (String code, String state) {
+    public String getNaverAccessToken (String code) {
         String access_Token = "";
         String refresh_Token = "";
         String reqURL = "https://nid.naver.com/oauth2.0/token";
@@ -43,7 +43,6 @@ public class NaverService {
             sb.append("&client_secret=p3flMVQsmY");
             sb.append("&redirect_uri=http://localhost:8080/oauth/naver"); // TODO 인가코드 받은 redirect_uri 입력
             sb.append("&code=" + code);
-            sb.append("&state=" + state);
             bw.write(sb.toString());
             bw.flush();
 
@@ -139,4 +138,30 @@ public class NaverService {
 
         return result;
     }
+
+    /*public void logout(String access_Token) {
+        String reqURL = "https://kapi.kakao.com/v1/user/logout";
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            String result = "";
+            String line = "";
+
+            while ((line = br.readLine()) != null) {
+                result += line;
+            }
+            System.out.println(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+
 }

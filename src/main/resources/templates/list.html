@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>게시판 - 목록</title>
+  <style>
+    body{
+      margin-top: 35px;
+    }
+    a{
+      padding: 0;
+      margin: 0;
+      text-decoration: none;
+    }
+    .rectangle {
+      height: 80px;
+      margin: 20px 44px;
+      background: rgba(217, 217, 217, 0.3);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+    }
+    .logo {
+      /*position: absolute;*/
+      width: 254.1px;
+      height: 70px;
+      /*z-index: 3;*/
+    }
+
+    .find-us {
+      /*position: fixed ;*/
+
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: rgba(0, 0, 0, 0.9);
+      /*z-index: 3;*/
+      margin-left: 200px;
+    }
+
+    .board {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 0px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: rgba(0, 0, 0, 0.9);
+      margin-left: 300px;
+      z-index: 3;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .container {
+      margin-top: 20px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .col-auto {
+      flex: 0 0 auto;
+    }
+    .mr-auto {
+      margin-right: auto;
+    }
+    .btn-primary {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+      padding: 8px 16px;
+      border-radius: 4px;
+    }
+    .btn-primary:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+  </style>
+</head>
+<body>
+<header class="rectangle">
+  <a href="/home"><img class="logo" src="images/kangnamlogo.png"/></a>
+  <a class="find-us" href="/index">찾아오는 길</a>
+  <a class="board" href="/list">게시판</a>
+</header>
+<div class="container">
+  <table class="table">
+    <thead class="thead-light">
+    <tr class="text-center">
+      <th scope="col">#</th>
+      <th scope="col">제목</th>
+      <th scope="col">글쓴이</th>
+      <th scope="col">작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-center" th:each="post : ${postList}">
+      <th scope="row">
+        <span th:text="${post.id}"></span>
+      </th>
+      <td>
+        <a th:href="@{'/post/' + ${post.id}}">
+          <span th:text="${post.title}"></span>
+        </a>
+      </td>
+      <td>
+        <span th:text="${post.author}"></span>
+      </td>
+      <td>
+        <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-auto mr-auto"></div>
+    <div class="col-auto">
+      <a class="btn btn-primary" th:href="@{/post}" role="button">글쓰기</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

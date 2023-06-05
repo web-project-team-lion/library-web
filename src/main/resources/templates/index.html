@@ -1,40 +1,88 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
     <meta charset="utf-8">
     <title>library-web-project</title>
     <style>
+        a{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
         .rectangle {
-            position: relative;
-            width: 1200px;
             height: 80px;
-            left: 32px;
-            top: 33px;
+            margin: 20px 44px;
             background: rgba(217, 217, 217, 0.3);
             border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
         }
-        .image {
-            position: absolute;
+        .logo {
+            /*position: absolute;*/
             width: 254.1px;
             height: 70px;
-            left: 50px;
-            top: 33px;
+            /*z-index: 3;*/
         }
-        .directions {
-            position: absolute;
-            width: 563px;
-            height: 102px;
-            left: -107px;
-            top: 162px;
+
+        .find-us {
+            /*position: fixed ;*/
+
             font-family: 'Inter';
             font-style: normal;
-            font-weight: 600;
-            font-size: 30px;
-            line-height: 36px;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
             text-align: center;
             letter-spacing: 1px;
-            color: #000000;
+            color: rgba(0, 0, 0, 0.9);
+            /*z-index: 3;*/
+            margin-left: 200px;
         }
+
+        .board {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 0px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            margin-left: 300px;
+            z-index: 3;
+        }
+        .nav {
+            height: 80px;
+            position: fixed;
+            top: 27px;
+            left: 0;
+            right: 0;
+            margin: 0 44px;
+            background: rgba(217, 217, 217, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+        .menu {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            margin: 0 0 0 200px;
+        }
+        .logo {
+            margin-left: 35px;
+            margin-bottom: 5px;
+            width: 254px;
+            height: 70px;
+        }
+
         .line1 {
             position: absolute;
             width: 387px;
@@ -71,7 +119,7 @@
             color: #000000;
 
         }
-        .details{
+        .detail{
             position: absolute;
             width: 469px;
             height: 155px;
@@ -87,7 +135,7 @@
 
             color: #000000;
         }
-        .route{
+        .how{
             position: absolute;
             width: 223px;
             height: 41px;
@@ -102,25 +150,45 @@
             letter-spacing: 1px;
 
             color: #000000;
-            
+        }
+        .category{
+            position: absolute;
+            width: 563px;
+            height: 102px;
+            left: -107px;
+            top: 162px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            line-height: 36px;
+            text-align: center;
+            letter-spacing: 1px;
+
+            color: #000000;
         }
     </style>
 </head>
 <body>
-<div class="rectangle"></div>
-<img class="image" src="images/kangnamlogo.png"/>
 <div id="map" style="width:836px;height:325px;top: 162px; left: 350px; position: absolute"></div>
-<div class="directions">찾아오시는 길</div>
+<header class="rectangle">
+    <a href="/home"><img class="logo" src="images/kangnamlogo.png"/></a>
+    <a class="find-us" href="/index">찾아오는 길</a>
+    <a class="board" href="/board">게시판</a>
+</header>
 <div class="line1"></div>
 <div class="line2"></div>
 <div class="adress">주소 및 연락처</div>
-<div class="details">주소
-    [도로명]경기도 용인시 기흥구 강남로 40
+<div class="detail">주소<br>
+    [도로명]경기도 용인시 기흥구 강남로 40<br>
     [지번]경기도 용인시 기흥구 구갈동 111<br>
-    <br>
+
     연락처
     031-280-3585</div>
-<div class="route">찾아오시는 방법</div>
+<div class="how">찾아오시는 방법</div>
+<div class="category">찾아오시는 길</div>
+
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5bce7a06f22e1dd2798f8336818ca504"></script>

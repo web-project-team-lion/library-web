@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>게시판 - 글 수정</title>
+    <style>
+        body{
+            margin-top: 35px;
+        }
+        a{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+        .rectangle {
+            height: 80px;
+            margin: 20px 44px;
+            background: rgba(217, 217, 217, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+        .logo {
+            /*position: absolute;*/
+            width: 254.1px;
+            height: 70px;
+            /*z-index: 3;*/
+        }
+        .find-us {
+            /*position: fixed ;*/
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            /*z-index: 3;*/
+            margin-left: 200px;
+        }
+        .board {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 0px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.9);
+            margin-left: 300px;
+            z-index: 3;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .col-sm-2 {
+            flex: 0 0 auto;
+            max-width: 16.66667%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .col-sm-10 {
+            flex: 0 0 auto;
+            max-width: 83.33333%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .col-auto {
+            flex: 0 0 auto;
+        }
+        .mr-auto {
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<header class="rectangle">
+    <a href="/home"><img class="logo" src="images/kangnamlogo.png"/></a>
+    <a class="find-us" href="/index">찾아오는 길</a>
+    <a class="board" href="/list">게시판</a>
+</header>
+<div class="container">
+    <form th:action="@{'/post/edit/' + ${post.id}}" method="post">
+        <input type="hidden" name="_method" value="put" />
+        <input type="hidden" name="id" th:value="${post.id}" />
+        <div class="form-group row">
+            <label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
+            <div class="col-sm-10">
+                <input
+                        type="text"
+                        name="title"
+                        class="form-control"
+                        id="inputTitle"
+                        th:value="${post.title}"
+                />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputAuthor" class="col-sm-2 col-form-label"><strong>작성자</strong></label>
+            <div class="col-sm-10">
+                <input
+                        type="text"
+                        name="author"
+                        class="form-control"
+                        id="inputAuthor"
+                        th:value="${post.author}"
+                />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputContent" class="col-sm-2 col-form-label"><strong>내용</strong></label>
+            <div class="col-sm-10">
+    <textarea
+            type="text"
+            name="content"
+            class="form-control"
+            id="inputContent"
+            th:text="${post.content}"
+    ></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-auto mr-auto"></div>
+            <div class="col-auto">
+                <input class="btn btn-primary" type="submit" role="button" value="수정" />
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

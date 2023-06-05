@@ -1,27 +1,23 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>강남대학교 도서관</title>
     <style>
-        .background {
+        .main {
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
             width: 100%;
-            height: 100vh;
-            background-color: #3563E9;
-            background-repeat: no-repeat;
+            background-image:url('/images/main.png');
             background-size: cover;
-            object-fit: cover;
-            opacity: 0.6; /* 60% 투명도 */
-            z-index: -1; /* 배경을 뒤에 표시 */
+            background-repeat: no-repeat;
+            height: 100%;
         }
-
-        .rectangle {
+        .nav {
             height: 80px;
             position: fixed;
-            top: 81px;
+            top: 95px;
             left: 0;
             right: 0;
             margin: 0 44px;
@@ -31,16 +27,15 @@
             align-items: center;
             justify-content: left;
         }
-
-        .logo {
-            position: absolute;
-            width: 254.1px;
-            height: 70px;
-            z-index: 3;
+        .menus {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
         }
-
-        .find-us {
-            position: absolute ;
+        .menu {
             font-family: 'Inter';
             font-style: normal;
             font-weight: 700;
@@ -49,120 +44,76 @@
             text-align: center;
             letter-spacing: 1px;
             color: rgba(0, 0, 0, 0.9);
-            margin-left: 458px;
-            z-index: 3;
+            margin: 0 auto;
         }
-
-        .board {
-            position: absolute;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 25px;
-            line-height: 0px;
-            text-align: center;
-            letter-spacing: 1px;
-            color: rgba(0, 0, 0, 0.9);
-            margin-left: 795px;
-            z-index: 3;
+        .logo {
+            margin-left: 35px;
+            margin-bottom: 5px;
+            width: 254px;
+            height: 70px;
         }
-
-        .button-contained {
+        .joinBox {
+            margin-top: 27px;
+            align-items: end;
             display: flex;
             flex-direction: row;
+            justify-content: right;
+        }
+        .login {
             align-items: center;
             padding: 8px 22px;
-            gap: 10px;
-            position: absolute;
-            width: 110px;
-            height: 31px;
-            left: 1175px;
-            top: 27px;
             background: #3563E9;
             border-radius: 5px;
-            border: none;
-        }
-
-        .button-contained-text {
-            width: 77px;
-            height: 24px;
             font-family: 'Inter';
             font-style: normal;
             font-weight: 800;
-            font-size: 14px;
-            line-height: 26px;
-            text-align: center;
-            letter-spacing: 5px;
-            color: #FFFFFF;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 4px;
+            color: #ffffff;
+            border: none;
+            margin-right: 44px;
         }
-
-        .button-outline {
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: row;
+        .join {
+            background: none;
             align-items: center;
-            justify-content: center;
             padding: 8px 22px;
             gap: 10px;
-            position: absolute;
-            width: 110px;
-            height: 31px;
-            left: 1300px;
-            top: 27px;
-            border: none;
             border: 1px solid #3563E9;
             border-radius: 5px;
-            background: rgba(53, 99, 233, 0.1);
-        }
-
-        .button-outline-text {
-            box-sizing: border-box;
-            width: 100%;
-            height: 100%;
             font-family: 'Inter';
             font-style: normal;
             font-weight: 800;
-            font-size: 14px;
-            line-height: 16px;
-            text-align: center;
-            letter-spacing: 2px;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: 4px;
             color: #3563E9;
+            margin-right: 44px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .join-disabled {
+            display: none;
         }
     </style>
-
-    <script>
-        function redirectToIndex() {
-            window.location.href = "/index";
-        }
-
-        function redirectToLogin() {
-            window.location.href = "/login";
-        }
-    </script>
 </head>
 <body>
-<<<<<<< HEAD
-    <div class="rectangle">
-        <img class="logo" src="images/kangnamlogo.png"/>
-        <div class="find-us">찾아오는 길</div>
-        <div class="board">게s시판</div>
-=======
-<div class="rectangle">
-    <img class="logo" src="images/kangnamlogo.png"/>
-    <div class="find-us" onclick="redirectToIndex()">찾아오는 길</div>
-    <div class="board">게시판</div>
->>>>>>> c092ed55d6486a536209d99e779a503f16a32a01
+<div class="main">
+    <div class="joinBox">
+        <a th:href="${nickname} ? '/home' : '/oauth/login'">
+            <button class="login" th:text="${nickname} ? ${nickname}+'님' : '로그인'">로그인</button>
+        </a>
+        <a th:href="${nickname} ? '/oauth/logout' : '/oauth/login'"><button class="join" th:text="${nickname} ? '로그아웃' : '회원가입'">회원가입</button></a>
+    </div>
+    <div class="nav">
+        <img src="/images/logo.png" class="logo"/>
+        <div class="menus">
+            <div class="menu"><a href="/">찾아오는 길</a></div>
+            <div class="menu"><a href="/board">게시판</a>></div>
+        </div>
+    </div>
 </div>
-<button class="button-contained" onclick="redirectToLogin()">
-    <span class="button-contained-text">로그인</span>
-</button>
-<button class="button-outline">
-    <span class="button-outline-text">회원가입</span>
-</button>
-<img class="background" src="images/background.png"/>
-
 </body>
 </html>
